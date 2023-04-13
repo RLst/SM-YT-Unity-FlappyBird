@@ -44,7 +44,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -52,7 +52,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -103,18 +103,56 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
+    sprites:
+    - serializedVersion: 2
+      name: Bird_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 18
+        width: 127
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7738686d144a05d4589f90e75694f2dc
+      internalID: 1140099326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: 37, y: 17}
+      - {x: 22, y: 31}
+      - {x: -2, y: 37}
+      - {x: -26, y: 31}
+      - {x: -43, y: 11}
+      - {x: -59, y: -1}
+      - {x: -61, y: -12}
+      - {x: -43, y: -19}
+      - {x: -27, y: -38}
+      - {x: -2, y: -47}
+      - {x: 23, y: -40}
+      - {x: 40, y: -27}
+      - {x: 60, y: -19}
+      - {x: 63, y: -13}
+      - {x: 61, y: -2}
+      - {x: 39, y: 2}
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bird_0: 1140099326
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
