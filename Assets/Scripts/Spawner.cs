@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public float initialDelay = 1;
-    public float spawnInterval = 2;
+    public float initialDelay = 1f;
+    public float spawnInterval = 2f;
+    public float maxRandomHeight = 3f;
     public GameObject obstaclePrefab;
 
     void Start()
@@ -15,6 +16,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
-        Instantiate(obstaclePrefab, this.transform.position, Quaternion.identity);
+        var randomHeight = Random.Range(-maxRandomHeight * 0.5f, maxRandomHeight * 0.5f);
+        Instantiate(obstaclePrefab, this.transform.position + Vector3.up * randomHeight, Quaternion.identity);
     }
 }
