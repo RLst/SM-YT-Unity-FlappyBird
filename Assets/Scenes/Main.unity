@@ -327,6 +327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1338148090}
+  - component: {fileID: 1338148091}
   m_Layer: 0
   m_Name: Pipes
   m_TagString: Untagged
@@ -351,6 +352,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1338148091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338148089}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a326df8c651e948a38d22c59e2bf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: -1
 --- !u!1 &1426225894
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +599,7 @@ GameObject:
   - component: {fileID: 2030136117}
   - component: {fileID: 2030136119}
   - component: {fileID: 2030136120}
+  - component: {fileID: 2030136121}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -696,3 +711,16 @@ CircleCollider2D:
   m_Offset: {x: -0.009637356, y: -0.04336816}
   serializedVersion: 2
   m_Radius: 0.37497246
+--- !u!114 &2030136121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030136116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abceb6bf89bfda940acc2941f85ef172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flyForce: 5
