@@ -1,3 +1,6 @@
+UD0JS9 Rough Script and Visual Guide
+===================
+
 I'm gonna hook up the audio
 
 Just play test to see where we're at
