@@ -135,22 +135,65 @@ Let's test.
 Ok, it can be a bit higher. Ok lets try about this height or so.
 Cool it looks good now. And it prevents the player from cheating.
 
+GAME TITLE
+I want to add one final nice bit of polish
+I want to add a title screen of sorts... but because the game is so simple we'll just do a simple variation.
+First we'll add some text.
+We'll name our game Flap Attack! This has two meanings (info text overlay explaining it)
 
+Ok, now what I want to happen is for the bird to stay in place until the user inputs something.
+Then the bird will simply move as normal, and the text will move away to the left and out of view.
+I also want the foreground and background to be playing to give it the feeling that the bird is moving and is waiting for you to start.
 
+So first thing is I don't want the bird to fall right away on start.
+We can pause the game time until a key is pressed. Let's implement that logic in our game manager.
+We'll need a flag variable here so we can check if the game has started or not. Pretty simple.
+Then in Start() we'll set the game to be paused by default. This will prevent the bird from moving.
+in Update() we'll check if any key or input has been pressed... and if it has then we'll set the game as started 
+and also unpause the game time and allowing normal gameplay.
 
+Now I want the text to move out of view once the game starts.
+Let's use our Mover script.
+It does seem to move.. but not by much. We'll have to ramp up the speed.
+The reason we have to do that is because UI and 2D sprites operate in different coordinate systems.
+2D sprites are typically measured in pixels. If you recall our ground texture is set to 100 pixels per unit, 
+so the bird is 128x128 so it is 1.28 units squared.
+UI objects on the other hand are measured in and operate in screen space coordinates.
+In short, screen space coordinates work on percentages and help you position UI elements in a way that is consistent across different
+resolultions and aspects ratios, especially across different devices and platforms.
 
+Notice the title text doesn't move until the game starts, that's because the logic in the Mover script uses Time.deltaTime
+which relies on the timescale of the game. And the game is paused on start up.
+Ok now we've run into another problem which is that the title text moves leftward to infinity.
+I'd like for it to either destroy itself, or deactivate once it goes ofscreen.
+So I'll write another new script called DeactivateOnDelay, meaning it will deactivate the gameobjects its attached to after a delay
+The time variable will simply be incremented each frame by deltaTime aka. the time between frames
+And immediately check if the time has surpassed the chosen delay time. If so then it will self-deactivate itself.
+Deactivation is actually better than destroying as the memory or garbage collection system doesn't have to come in and clean up,
+which uses extra resources.
+Ok great it looks like it works as intended. In fact, we can even reduce the time to say around 3 seconds.
 
+Ok, next I want to make it so the foreground and background move at the start of the game.
+Right now, if we have a look at the background and ground's animators we'll see that the update mode is set to normal,
+meaning it relies on Time.timescale. So if we set these to Unscaled Time, then whether or not it's paused shouldn't have any effect on the 
+animators.
+Ok, as you can see, the background and foreground now run even though the game is paused or timescale is set to 0 
+(overlay relevant code in Game.cs)
+Ok sweet! the game looks pretty polished at this point and is almost ready for an official release build.
 
+There's one more minor thing, and that is once the bird dies, if the player inputs, then it'll keep making flap sounds.
+We can deal with this by putting in a guard that prevents certain logic from running...
+So if the bird is dead... then exit out and don't run any of the code below. This prevents the player from making flap sounds
 
+Ok, There's one more thing, but I'd like to pose it to you as a challenge.
+How can you make the score not appear until the game starts? So it should only appear after the player has clicked or pressed the space bar.
+Second challenge, the background and foreground continue to run even after the bird is dead. How can we also stop it?
+That can be your challenges for this chapter.
+We'll solve them in the next chapter. 
 
-
-
-
-
-
-
-
-
+Challenges:
+- Hide the score until the game starts
+- Stop the backgroudn and forebround parallax once the bird dies
 
 
 Ok great work!

@@ -7,9 +7,12 @@ public class Game : MonoBehaviour
     public Bird bird;
     public UnityEvent onGameOver;
 
+    bool isGameStarted = false;
+
     void Start()
     {
-        Time.timeScale = 1f;
+        isGameStarted = false;
+        Time.timeScale = 0f;
         Cursor.visible = false;
     }
 
@@ -17,6 +20,13 @@ public class Game : MonoBehaviour
     {
         if (bird.isDead)
             GameOver();
+
+        if (!isGameStarted)
+            if (Input.anyKeyDown)
+            {
+                isGameStarted = true;
+                Time.timeScale = 1f;
+            }
     }
 
     void GameOver()
