@@ -1,0 +1,124 @@
+I'm gonna hook up the audio
+
+Just play test to see where we're at
+
+We need to do the following:
+- Audio
+    Flap sound - whoosh 13
+    Lose sound - lose sound 9
+Polish
+    Bird tilt
+    Background parallax scrolling
+
+We'll now hook up the sounds
+Ok we've just hooked up the sounds, tested it and verified that it works well
+
+Redo!
+We just made a utility remap function (static) in its own separate class. this is good practice etc
+Now we'll add in essential vector2 variables so that we can adjust how the bird will tilt
+
+ok now we'll implement the actual til function
+We'll use this shortcut to create a new function
+What I'm doing is I'm remapping the velocity of the bird which can be obtained from it's rigidbody component to the level of tilt that the bird will have
+Now I'm converting from Euler angles into Quaternion, as unity gameobjects actually work with quaternions in the background
+
+So the tilting now seems to work, i'll now fine tune it based on some experiments I did earlier
+I find these are good working values to give it that classic flappy bird effect
+
+ok great let's save looks pretty good
+
+Now we'll implement a parallax effect.
+Imagine that the ground surface is closest to the camera, then the pipes, then the background the furthests away,
+So the ground surface will move the fastest compared to the pipes, and the background will be the slowest
+We we'll simply use Unity's animation system to do this.
+What we'll do now is make the ground wider so that we can animate it better, and also duplicate the background for the same reason. You'll see why in a minute
+I flipped it on the x axis here to make it look seamless.. that's the lazy way to do it
+
+Now i'll start with animating the background by moving it right to left and looping it
+We put an animator on the root backgroudn object
+We're gonna need an animator asset for it (animator controller)
+then hook it up to the background root animator
+you can do it by clicking on the circle and selecting it from the list, or dragging from the project window to the inspector field, either way is fine
+
+that's roughly the effect I want, albeit a bit fast
+it has a smoothing effect at the ends. We need to eliminate that
+Do do that select curves
+the red line represents the moition on the x axis, you can see that the motion is smoothed at the start and end
+I set both keyframes to be linear, hence eliminating the smoothness
+now i'll stretch the keyframes further out to make it slower
+Oh but the unfortunate issue now is that it doesn't loop. I'll just duplicate the background a second time then
+Move it over
+Now I'll double the movement on the x axis
+Ok 25 seems to be the sweet spot that gives it the effect that the background scrolls continuously and forever
+I'll shift the keyframes more to the right to slow it down further... lets try 8 seconds
+Ok looking good. Now lets play and test
+
+REDO!
+Oh ok so the speed is good, but it stops after 8 seconds and doesn't loop again after that. This is an easy fix
+Simply click on the background parallax loop animation asset file in our animation folder,
+and tick the loop time option
+Now when we play, you'll see that the background loops forever. Awesome!
+
+The background is still a little be too fast actually for my liking, so I'll slow it down further again by moving the keyframes down to a longer duration\
+Ok actually now that I think about it, the background needs to be slower than the speed of the pipes... since if you think about it... things in the far distance will appear to move slower than things that are closer. So 20 seems to be good.
+You can further tweak/fine tunes yours to however you like as well
+
+IMPLEMENTING PARALLAX EFFECT ON GROUND
+Ok now that we've done the background, we'll now do the ground. I'll just a slightly different method so that you can see the different ways to solve this solution.
+If you remembered previously we made the ground horizontally longer so that it has room to move and it'll be easier to animate etc
+It's much easier to lengthen/widen the ground object because it has the auto tiling option that we setup previously.
+So we don't have to deal with duplicating and manually shifting extra child objects like with the background
+
+This time round, le'ts click on the ground object and then click on the animation window/tab
+Now we'll click on the create button
+As you can see this is a much easier way to create animations. It automatically created an animator comoponent on our ground object, and a corresponding animation clip for it
+And if we click into the animator you'll see it has automatically hooked everything up for us as well
+This the much easier method, but I did the other method first so you can see how everything works individually and how it all fits in together.
+
+Animator component: The actual component that will animate the values and properties on an gameobject and/or it's components
+Animation clip: represents an isolated piece of motion, in our case just move one certain direction and a certain linear speed 
+Animator controller: A state machine that handles transitions between different animation clips. in our case the state machine just goes from the entry state to one single state and stays there for the entire duration of the game. it is super simple. But unity animation system aka. mechanim can handle a lot more complex animations including tweens and transitions between different clips as well as some inverse kinematics (IK) capabilities as well. Let me know down in the comments if you'd like me to cover the mechanim system more in depth :)
+
+Ok now let's go back and we'll do the exact same thing we did for the background to the ground except the ground will simply move at a faster pace to simulate it being in the foreground and closer to us.
+Press the record button and add a position keyframe to save the initial position
+Well move the time to say 6 seconds and then move the ground to create a new keyframe
+Let's make the keyframes linear
+Press play and test it out
+Ok it looks good and seamless
+Let's stop recording
+As you can see the loop time option has already been selected
+So lets now play test
+Ok so I still see a slight sudden jump when the ground loops back to the start
+It moves from -13 to 13 on the x axis... which means it moves 26 units in total right?
+Let's make it move 20 units total to see if that solves the issue
+Make sure we're in record mode to make the adjustments stick
+Click on these buttons to jump from one keyframe to the other. This avoids creating extra unnecessary keyframes that may end up messing everything up
+We'll go to the first keyframe and try setting it to 10 or so
+the other -10, for a total movement of 20 units
+lets test
+ok it still jumps suddently... this time it's even more prevalent. I'm just using trial and error. 
+But ok, lets actually use our brain a bit.
+Ok so if we look at ground texture closely, go into the sprite editor, we'll see that it has a width (and height) of 256 pixels
+We can see here that it has 100 pixels per unit
+the tooltip here states that "How many pixels in the sprite corresponds to one unit in the world"
+the sprite is 256 pixels wide, divide by 100 pixels per unit equals the base ground sprite is 2.56 units wide.
+So theoretically If we animate in multiples of 2.56 it should give us a perfect looping animation
+Let's try
+Let's go back to the animation window, select record and go to the first frame again
+Well set the first keyframe to 0
+We'll set the second keygrame to -2.56
+Ok playing it we can see that it's super slow, so we'll shift the keyframes over to a smaller duration... say half a seconds maybe
+ok look at that, we can see that the loop is perfectly smooth and in sync. Infact we don't even need the ground to be so wide
+Let's try multiples of 2.56... *6 is good and still fits within the camera view as you can see
+Lets also make the collider the same width
+Ok lets play test
+
+Ok great work!
+As you can see it's looping perfectly now and is only moving just the required amount to make it look like it's endless and looping infinintely
+
+Awesome! I would now say that this game is polished enough for release. of course you can further tweak and fine tune the settings, speed, fly force or animations to your liking.
+But for now we'll wrap up this chapter.
+
+And in the next chapter we'll learn to build and distribute the game out into a executable file.
+
+
