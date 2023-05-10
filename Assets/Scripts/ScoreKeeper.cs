@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Events;
 
 public class ScoreKeeper : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ScoreKeeper : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI hiscoreText;
+    public UnityEvent onIncrementScore;
+
     int score;
 
     void Start()
@@ -38,10 +41,19 @@ public class ScoreKeeper : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        //If we DIDN'T hit an obstacle then ignore
         if (!other.GetComponent<Obstacle>())
             return;
 
-        score++;
+        //If we hit an obstacle...
+        IncrementScore();
         UpdateScoreUI();
+    }
+
+    void IncrementScore()
+    {
+        score++;
+
+        onIncrementScore.Invoke();
     }
 }

@@ -1,8 +1,7 @@
 UD0JS9 Rough Script and Visual Guide
 ===================
 
-I'm gonna hook up the audio
-
+TOUCHBASE
 Just play test to see where we're at
 
 We need to do the following:
@@ -13,10 +12,18 @@ Polish
     Bird tilt
     Background parallax scrolling
 
+AUDIO
 We'll now hook up the sounds
 Ok we've just hooked up the sounds, tested it and verified that it works well
+! This is a backtrack because I forgot about adding a sound when the player score a point
+(don't include this and make this a continuation from 4.1 or whatever it is)
+Ok so lets now add in sfx for when the player scores a point.
+The thing that's in charge of handling the score is the scorekeeper, so lets have a look at that and see what we can do.
+Ok so this part of the code increases the score. We'll extract it out as it's own separate function, and then add in a unity event.
+Let's hook up the sound now.
+Ok sounds good!
 
-Redo!
+TILT
 We just made a utility remap function (static) in its own separate class. this is good practice etc
 Now we'll add in essential vector2 variables so that we can adjust how the bird will tilt
 
@@ -30,6 +37,7 @@ I find these are good working values to give it that classic flappy bird effect
 
 ok great let's save looks pretty good
 
+BACKGROUND PARALLAX
 Now we'll implement a parallax effect.
 Imagine that the ground surface is closest to the camera, then the pipes, then the background the furthests away,
 So the ground surface will move the fastest compared to the pipes, and the background will be the slowest
@@ -56,7 +64,6 @@ Ok 25 seems to be the sweet spot that gives it the effect that the background sc
 I'll shift the keyframes more to the right to slow it down further... lets try 8 seconds
 Ok looking good. Now lets play and test
 
-REDO!
 Oh ok so the speed is good, but it stops after 8 seconds and doesn't loop again after that. This is an easy fix
 Simply click on the background parallax loop animation asset file in our animation folder,
 and tick the loop time option
@@ -66,7 +73,7 @@ The background is still a little be too fast actually for my liking, so I'll slo
 Ok actually now that I think about it, the background needs to be slower than the speed of the pipes... since if you think about it... things in the far distance will appear to move slower than things that are closer. So 20 seems to be good.
 You can further tweak/fine tunes yours to however you like as well
 
-IMPLEMENTING PARALLAX EFFECT ON GROUND
+GROUND PARALLAX
 Ok now that we've done the background, we'll now do the ground. I'll just a slightly different method so that you can see the different ways to solve this solution.
 If you remembered previously we made the ground horizontally longer so that it has room to move and it'll be easier to animate etc
 It's much easier to lengthen/widen the ground object because it has the auto tiling option that we setup previously.
@@ -115,6 +122,36 @@ ok look at that, we can see that the loop is perfectly smooth and in sync. Infac
 Let's try multiples of 2.56... *6 is good and still fits within the camera view as you can see
 Lets also make the collider the same width
 Ok lets play test
+
+TOP BOUNDARY
+There's another issue that's problematic... has anyone noticed it yet?
+Let's play and have a look shall we?
+That's right... there's nothing stopping our bird from just flying up into space, and cheating
+Fortunately this is quite an easy problem to remedy.
+All we need to do is to put an invisible collider at the top.
+Create an empty (gameobject). I'll just quickly rearrange some of the objects to keep it tidy.
+Then we'll simply add a box collider 2d. Move and Resize accordingly.
+Let's test.
+Ok, it can be a bit higher. Ok lets try about this height or so.
+Cool it looks good now. And it prevents the player from cheating.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Ok great work!
 As you can see it's looping perfectly now and is only moving just the required amount to make it look like it's endless and looping infinintely
