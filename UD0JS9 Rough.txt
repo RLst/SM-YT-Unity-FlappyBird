@@ -12,7 +12,7 @@ Polish
     Bird tilt
     Background parallax scrolling
 
-AUDIO
+9.1 AUDIO
 We'll now hook up the sounds
 Ok we've just hooked up the sounds, tested it and verified that it works well
 ! This is a backtrack because I forgot about adding a sound when the player score a point
@@ -23,7 +23,7 @@ Ok so this part of the code increases the score. We'll extract it out as it's ow
 Let's hook up the sound now.
 Ok sounds good!
 
-TILT
+9.2 TILT
 We just made a utility remap function (static) in its own separate class. this is good practice etc
 Now we'll add in essential vector2 variables so that we can adjust how the bird will tilt
 
@@ -37,7 +37,7 @@ I find these are good working values to give it that classic flappy bird effect
 
 ok great let's save looks pretty good
 
-BACKGROUND PARALLAX
+9.3 BACKGROUND PARALLAX
 Now we'll implement a parallax effect.
 Imagine that the ground surface is closest to the camera, then the pipes, then the background the furthests away,
 So the ground surface will move the fastest compared to the pipes, and the background will be the slowest
@@ -69,11 +69,11 @@ Simply click on the background parallax loop animation asset file in our animati
 and tick the loop time option
 Now when we play, you'll see that the background loops forever. Awesome!
 
-The background is still a little be too fast actually for my liking, so I'll slow it down further again by moving the keyframes down to a longer duration\
+The background is still a little be too fast actually for my liking, so I'll slow it down further again by moving the keyframes down to a longer duration.
 Ok actually now that I think about it, the background needs to be slower than the speed of the pipes... since if you think about it... things in the far distance will appear to move slower than things that are closer. So 20 seems to be good.
 You can further tweak/fine tunes yours to however you like as well
 
-GROUND PARALLAX
+9.4 GROUND PARALLAX
 Ok now that we've done the background, we'll now do the ground. I'll just a slightly different method so that you can see the different ways to solve this solution.
 If you remembered previously we made the ground horizontally longer so that it has room to move and it'll be easier to animate etc
 It's much easier to lengthen/widen the ground object because it has the auto tiling option that we setup previously.
@@ -121,9 +121,12 @@ Ok playing it we can see that it's super slow, so we'll shift the keyframes over
 ok look at that, we can see that the loop is perfectly smooth and in sync. Infact we don't even need the ground to be so wide
 Let's try multiples of 2.56... *6 is good and still fits within the camera view as you can see
 Lets also make the collider the same width
-Ok lets play test
+Ok lets play test.
 
-TOP BOUNDARY
+Ok great work!
+As you can see it's looping perfectly now and is only moving just the required amount to make it look like it's endless and looping infinintely
+
+9.5 TOP BOUNDARY
 There's another issue that's problematic... has anyone noticed it yet?
 Let's play and have a look shall we?
 That's right... there's nothing stopping our bird from just flying up into space, and cheating
@@ -135,7 +138,7 @@ Let's test.
 Ok, it can be a bit higher. Ok lets try about this height or so.
 Cool it looks good now. And it prevents the player from cheating.
 
-GAME TITLE
+9.6 GAME TITLE
 I want to add one final nice bit of polish
 I want to add a title screen of sorts... but because the game is so simple we'll just do a simple variation.
 First we'll add some text.
@@ -181,27 +184,25 @@ Ok, as you can see, the background and foreground now run even though the game i
 (overlay relevant code in Game.cs)
 Ok sweet! the game looks pretty polished at this point and is almost ready for an official release build.
 
-There's one more minor thing, and that is once the bird dies, if the player inputs, then it'll keep making flap sounds.
+There's one more very small thing, and that is once the bird dies, if the player inputs, then it'll keep making flap sounds.
 We can deal with this by putting in a guard that prevents certain logic from running...
-So if the bird is dead... then exit out and don't run any of the code below. This prevents the player from making flap sounds
+So if the bird is dead... then exit out and don't run any of the code below. This prevents the player from making flap sounds.
 
-Ok, There's one more thing, but I'd like to pose it to you as a challenge.
-How can you make the score not appear until the game starts? So it should only appear after the player has clicked or pressed the space bar.
-Second challenge, the background and foreground continue to run even after the bird is dead. How can we also stop it?
-That can be your challenges for this chapter.
-We'll solve them in the next chapter. 
-
-Challenges:
-- Hide the score until the game starts
-- Stop the backgroudn and forebround parallax once the bird dies
-
-
-Ok great work!
-As you can see it's looping perfectly now and is only moving just the required amount to make it look like it's endless and looping infinintely
-
-Awesome! I would now say that this game is polished enough for release. of course you can further tweak and fine tune the settings, speed, fly force or animations to your liking.
+9.7 CONCLUSION AND CHALLENGE
+EXCELLENT work guys! 
+I would now say that this game is polished enough for release. 
+Of course you can further tweak and fine tune the settings, speed, fly force or animations to your liking.
 But for now we'll wrap up this chapter.
 
-And in the next chapter we'll learn to build and distribute the game out into a executable file.
+However, there's a few last final things though, but I'd like to pose it to you as a challenge.
+- HIDE SCORE UNTIL GAME STARTS: 
+The score text can always been seen... it kinda looks ugly though at the start with the title text.
+How can you make the score only appear after the game starts? After the player presses the space button first?
+- PAUSE BACKGROUND AND FOREGROUND ON GAME DEATH: 
+Second challenge, the background and foreground continue to run even after the bird is dead. 
+Can you also make it pause or stop animating when the bird dies?
 
+These can be your challenges for this chapter. Try to solve them and we'll go through solutions in the next chapter. 
 
+In the next chapter we'll learn to build and distribute the game out into a executable file that can be played locally on your computer,
+as well as deploy it out onto the web using WebGL.
