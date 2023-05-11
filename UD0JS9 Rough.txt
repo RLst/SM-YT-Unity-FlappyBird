@@ -194,7 +194,15 @@ I would now say that this game is polished enough for release.
 Of course you can further tweak and fine tune the settings, speed, fly force or animations to your liking.
 But for now we'll wrap up this chapter.
 
-However, there's a few last final things though, but I'd like to pose it to you as a challenge.
+Recap
+In this chapter we've learnt to add the following polish: 
+We've learned how to hook up audio and sounds, 
+we've made the bird tilt up and down, 
+we added a top boundary to prevent players from cheating,
+we've added parallax effects to make the game look and feel more dynamic,
+and we've learnt to make a basic title screen of sorts that stylishly moves out of the way once we start playing.
+
+However, there's are a couple more things though, but I'd like to pose it to you as a challenge for you to complete.
 - HIDE SCORE UNTIL GAME STARTS: 
 The score text can always been seen... it kinda looks ugly though at the start with the title text.
 How can you make the score only appear after the game starts? After the player presses the space button first?
