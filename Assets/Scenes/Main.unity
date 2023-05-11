@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDelay: 1
   spawnInterval: 2
-  maxRandomHeight: 5
+  maxRandomHeight: 4
   obstaclePrefab: {fileID: 8205825425156385228, guid: 597039e8f44c2e2479c5d3873feb5ed3, type: 3}
 --- !u!1 &787749507
 GameObject:
@@ -2832,7 +2832,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2.75
+  m_GravityScale: 3.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2866,7 +2866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abceb6bf89bfda940acc2941f85ef172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyForce: 8.4
+  flyForce: 11
   isDead: 0
   velRange: {x: -20, y: -5}
   tiltRange: {x: -80, y: 22}

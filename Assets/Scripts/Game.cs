@@ -9,16 +9,22 @@ public class Game : MonoBehaviour
     public UnityEvent onGameOver;
 
     bool isGameStarted = false;
+    bool isGameOver = false;
 
     void Start()
     {
         isGameStarted = false;
+        isGameOver = false;
         Time.timeScale = 0f;
         Cursor.visible = false;
     }
 
     void Update()
     {
+        if (isGameOver)
+            if (Input.GetKeyDown(KeyCode.Return))
+                RestartGame();
+
         if (bird.isDead)
             GameOver();
 
@@ -37,6 +43,7 @@ public class Game : MonoBehaviour
 
         Time.timeScale = 0f;    //Pause the game
         Cursor.visible = true;
+        isGameOver = true;
     }
 
     public void RestartGame()

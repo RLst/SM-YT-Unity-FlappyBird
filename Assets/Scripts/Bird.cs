@@ -28,7 +28,7 @@ public class Bird : MonoBehaviour
         if (isDead)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (Input.anyKeyDown)
         {
             Flap();
         }
