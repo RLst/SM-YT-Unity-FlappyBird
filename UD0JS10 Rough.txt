@@ -16,5 +16,145 @@ If I play the game, we die, and now to stop the parallax effects we could just m
 So that's the solution, except we do this programatically. When we die, the Bird's onDeath event gets invoked. It's simply a case of adding both the background and ground to the list, then disabiling their animators.
 As you can see, once we crash it stops.
 
-Awesome! Now the game is polished enough for a release build.
+Awesome! I'd say the game is pretty much polished enough for release.
 
+10.2 BUILDING AN EXECUTABLE
+And that's exactly what we'll be doing now.
+
+In this chapter, we'll learn how to create a standalone executable file of our game that can be easily run on any machine, without the need for Unity to be installed. This will make our game more accessible to a wider audience. Additionally, we'll also explore how to build our game as a WebGL version, which can be uploaded to various game hosting websites like itch.io or gamejolt, allowing anyone to easily play our game directly from a web browser. By the end of this chapter, you'll have a solid understanding of how to build and distribute your game to a wider audience.
+
+So first, let's prepare our game for a build.
+First we'll go to the canvas > canvas scaler.
+We'll set the Reference resolution to 800 x 800 to assure our UI objects that this is the base resolution of or game so it will adjust itself accordingly.
+Next we'll go to Project Settings > Player.
+Let's fill in some basic info about our game.
+Company name: Shader Academy
+Product Name: Flap Attack!
+Default Icon: I'm just gonna use the texture of the bird to keep things simple.
+
+Open up the Resolutoin and Presentation section.
+Set fullscreen mode to Windowed,
+Default screne width and height to match our game at 800 x 800,
+Untick resizable window,
+Untick all supported aspect ratios.
+
+Open up the Splash Image section.
+Now since this is a free version of Unity you cannot turn off the default unity splash screen. To do so requires you to by the Pro edition.
+I'm going to select Dark on Light for the splash style.
+Then "Sequential" for draw mode.
+Then I'll add in another logo here, we'll add our bird again.
+
+Right lets save and do a test buld.
+Go to File > Build Settings.
+Make sure our Main scene is loaded into the "Scenes In Build" section. This game is super simple and only has one scene.
+Select the "Windows, Mac, Linux" platform.
+On the right, set the compression to be "LZ4HC". This is high compression with reasonable load times and is good for release builds.
+Click build, I usually create a "Builds" folder to keep things organized. You can choose to make another folder since building will create not just one but a bunch of files that need to be together for the game to work.
+Select the folder then press the select button.
+If all goes well and you don't run into errors then your bulid should be successful and a window would pop up.
+Double click our game to play it.
+
+Ok pretty good. However I did notice a few minor things.
+First, our title text is moving way too slow and disappears way too early.
+To fix that lets adjust out title text.
+Ok so double the speed and set the deactivation delay to 10 seconds.
+Let's do a quick build by pressing ctrl + b.
+Ok looks good.
+
+Now the second thing here is if you look carefully, there's a slight border of transparent pixels around the entire death screen.
+This should be relatively easy to fix. I believe the gameover screen has a default source image loaded in which cause this unwanted border.
+So if we remove that hopefully that should fix it.
+There we go, as you can see, as soon as I deleted that default source image it because a perfect square that fills the screen.
+Let's do another quick build.
+
+OK awesome work guys! You have successfully completed your first unity game and created an executable build that you can distribute to your friends and family, or maybe your next potential employer :D
+
+If you zip the folder up like so, then you can easily distribute your game by sending them this file.
+They'll need to unzip it and, go into the folder and double click your executable to play.
+
+For Macs, it's even easier because their executable files are all one single file.
+
+10.3 DEPLOYING TO A WEBGL host
+Now this is great and all, but how can we make this even easier for your players?
+Well since this is a relatively simple game with relatively low system requirements, 
+we could do a WebGL build, then deploy that to a website that is able to host our webgl version.
+Essentially the game is converted into javascript and other web-compatible technologies so that it can run directly on the web browser.
+This allows for super easy distribution and assessbility of your game to a wide audience and without the need for the user to download any additional software.
+
+However, there are some drawbacks.
+The performance is limited by the browser's processing power and memory limitations. As of current, in browser game performance cannot match natively run code, so this is not recommended for graphically or CPU intensive games.
+The other major issue is that some features may not work or is limited such as being able to use a controller, or certain shader effects, or third party plugins.
+
+With that being said let's do a webgl build now and then deploy it to a website.
+So go into the bulid settings menu again,
+Click on WebGL,
+Click install with UnityHub,
+Click continue and let it install,
+Once done the webGL version should be available and clicking on it will give you some options.
+We'll leave these as is.
+Click "Switch platforms" to prepare the editor for webgl builds.
+Before we build though lets go over to player settings and adjust a few things.
+We'll set the canvas to 800x800,
+template to minimal.
+Remove the extra splash screen icon to save time.
+Scroll down to publishing settings, and set compression to disabled.
+
+Back in build settings, we'll do a build. This time round though we have to press the "build and run" button.
+So the build has completed successfully, however the screen is  
+Let's half the resolution 400x400 instead.
+Let's build and run again.
+Ok that looks pretty good now.
+The only minor issue I see is that the quit button doesn't really make sense and just freezes the game.
+It's better do just deactivate the quit button.
+I might even bump the res up to 500x500.
+We'll do another quick build.
+Ok awesome that seems to work well now.
+
+Let's now distribute it up onto the web.
+I'm show you how to deploy on itch.io, a popular site to upload and deploy your webgl games.
+First we need to zip up our webgl build folder.
+I'll just name it "FlapAttackWeb".
+
+Go to itch.io and make an account if you haven't already done so.
+I've already have an account from a long time ago.
+Go to dashboard, click create new project, fill in whatever details you want.
+The important parts are here:
+For the "Kind of project" you need to set it to HTML.
+Then at "Upload files" we want to upload the zipped file that we created earlier.
+Once it finishes uploading you have a few options. Tick the "this file will be played in the browser".
+Then near the bottom here we'll put in 500x500 for our game's viewport dimensions.
+
+Once you're done, hit "save & view page".
+This will allow you to test out your webpage and game first.
+We click on "run game"... and great... it seems to be working great now.
+
+Now just click back to "edit page" and then click on the "Publish" radio button.
+Now your game is officially published on the web, and you can just send this link here to your friends for them to play.
+AWESOME GREAT WORK!
+
+Some ohter places where you can also deploy your game to are:
+gamejolt.com using a very similar process 
+as well as play.unity.com
+
+10.4 CONCLUSION
+
+Congratulations on completing my jumpstart Unity course! I hope you found it helpful, useful and informative.
+I will provide a link to the full source code as well as all the assets, textures and sounds used.
+
+Before we wrap things up, let's quickly recap what we've covered throughout the course.
+
+In the first few chapters we covered how to setup unity, the basics of the unity editor.
+
+In the following lesson we covered scenes, gameobjects, components, physics, UI, and scripting via making our flappy bird style game.
+
+And in the final couple of lessons we covered some fun little polishes 
+as well as the ultimate goal of making a game which is to get a build out so it can be distributed to players.
+
+I want to thank you for joining me on this journey and I hope you've learned a lot.
+If you have any questions or feedback, feel free to leave them in the comments section below.
+If you have managed to successfully finish the course then please post your work such as linking us to your webgl Builds.
+
+And finally if you enjoyed this course, please consider subscribing to our channel for more content like this. 
+Liking and sharing our videos greatly helps to support the channel and spread the word.
+
+Again, thank you for watching and I wish you all the best in your futuer game development endeavours.
