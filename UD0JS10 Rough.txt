@@ -1,0 +1,20 @@
+UD0JS10
+=======
+
+10.1 SOLVING CHALLENGES
+Ok so in the last chapter I issued some challenges, were you able to solve them?
+Let's quickly solve them.
+So the first one is to make the score text appear once the game starts.
+We can simply attach a DeactivateOnAwake script to the score text UI object. Like so.
+And then after that we'll make a unity event in our Game script and we'll invoke the event once the game starts.
+Then we'll trigger the score text object to activate when onGameStart is triggered.
+Excellent! Exactly what we wanted. We want a clean interface at the start, the score only shows once the game starts.
+
+The next issue is to also stop the parallax animations once the bird dies and the game ends. As you can see it doesn't look right if the the ground and skyline is still moving even after the game has ended.
+Turns out this is even easier to resolve.
+If I play the game, we die, and now to stop the parallax effects we could just manually turn each of their animators off like so.
+So that's the solution, except we do this programatically. When we die, the Bird's onDeath event gets invoked. It's simply a case of adding both the background and ground to the list, then disabiling their animators.
+As you can see, once we crash it stops.
+
+Awesome! Now the game is polished enough for a release build.
+

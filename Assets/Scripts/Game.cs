@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Game : MonoBehaviour
 {
     public Bird bird;
+    public UnityEvent onGameStart;
     public UnityEvent onGameOver;
 
     bool isGameStarted = false;
@@ -26,6 +27,7 @@ public class Game : MonoBehaviour
             {
                 isGameStarted = true;
                 Time.timeScale = 1f;
+                onGameStart.Invoke();
             }
     }
 
